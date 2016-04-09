@@ -1,0 +1,100 @@
+<div class = "container">
+  <div class="row">
+    <h3> Edit Property </h3>
+    <div class="col s12">
+      <div class="row">
+        <div class="col s6">
+          <dl>
+                 <dt>Address: </dt>
+                 <dd>{{address}}</dd>
+                 <dt>Price:</dt>
+                 <dd>{{price}}</dd>
+                 <dt>Property Type:</dt>
+                 <dd>{{property_type}}</dd>
+                 <dt>District:</dt>
+                 <dd>{{district}}</dd>
+                 <dt>Features:</dt>
+                 {{#current}}<dd>{{#.}}{{name}}{{/.}}
+                 </dd>{{/current}}
+               </dl>
+        </div>
+      </div>
+    </div>
+    <div class = "col s6 button-holder-div">
+          <a href="/removeproperty.php?id={{pid}}" style="color:white"><button class="btn red waves-effect waves-light">Remove Property<i class="material-icons right">warning</i></button></a>
+    </div>
+    <form class="col s12" method="post">
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Address" name="address" id="address" type="text" class="validate">
+          <label for="address">Address</label>
+        </div>
+        <div class="input-field col s6">
+          <input placeholder="Price" name="price" id="price" type="text" class="validate">
+          <label for="price">Price</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <select name = "property_type">
+            <option value="" disabled selected>Edit the Property Type</option>
+            {{#types_list}}
+            {{#.}}
+            <option value="{{id}}">{{name}}</option>
+            {{/.}}
+            {{/types_list}}
+          </select>
+          <label>Property Type</label>
+        </div>
+        <div class="input-field col s6">
+          <select name = "district">
+            <option value="" disabled selected>Edit the District</option>
+            {{#district_list}}
+            {{#.}}
+            <option value="{{id}}">{{name}}</option>
+            {{/.}}
+            {{/district_list}}
+          </select>
+          <label>District</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+
+            <h5>Select to add Features</h5>
+            {{#features}}
+            {{#.}}
+            <p>
+            <input type="checkbox" id="{{name}}-add" name="add[]" value="{{id}}"/>
+            <label for="{{name}}-add">{{name}}</label>
+            </p>
+            {{/.}}
+            {{/features}}
+        </div>
+        <div class="input-field col s6">
+          <h5>Select to remove current Features</h5>
+            {{#current}}
+            {{#.}}
+            <p>
+            <input type="checkbox" id="{{name}}-remove" name="remove[]" value="{{id}}"/>
+            <label for="{{name}}-remove">{{name}}</label>
+          </p>
+            {{/.}}
+            {{/current}}
+      </div>
+      <div class="row">
+        <div class="col s6">
+        <button class="btn waves-effect waves-light" type="submit" name="submit" id="submit">Edit
+          <i class="material-icons right">create</i>
+        </button>
+      </div>
+      </div>
+      </div>
+    </form>
+    <script>
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+    </script>
+  </div>
+</div>

@@ -1,0 +1,28 @@
+  <div class="container">
+    <div class = "row">
+      {{^loggedin}}
+      <div class="col s12 m6">
+        <h2> Login </h2>
+        <form class="col s12" method = "post">
+          <div class="row">
+            <div class="input-field col s12">
+             <input placeholder="email@queensu.ca" name = "email" id="email" type="text" class="validate">
+             <label for="email">Queen's Email</label>
+           </div>
+           <div class="input-field col s12">
+             <input placeholder="Password" name="Password" id="password" type="password" class="validate">
+             <label for="password">Password</label>
+           </div>
+           <div class = "col s12">
+            <button class="btn waves-effect waves-light" type="submit" name="action"> Login <i class="material-icons right">send</i></button>
+          </div>
+        </div>
+      </form>
+    </div>
+    {{/loggedin}}
+    <div class="col s12 m6">
+      <h2> Welcome to QBnB! </h2>
+      <p>QBnB is a bed and breakfast platform for Queen's University alumni based out of Toronto, Ontario. We have BnB's on both sides of the Atlantic Ocean, with offices in Toronto, New York City, and London. We have the best user experience and quality of service around, and help connect you with your Queen's family as your travel.</p>
+    </div>
+  </div>
+</div>

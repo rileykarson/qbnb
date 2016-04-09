@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0"/>
+	<title>QBNB</title>
+	<link rel="shortcut icon" href="/logo.png" type="image/x-icon">
+	<link rel="icon" href="/favicon.jpg" type="image/x-icon">
+
+	<!-- CSS  -->
+	<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+	<link href="css/materialize.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+	<link href="css/style.css" type="text/css" rel="stylesheet" media="screen,projection"/>
+
+
+	<!--  Scripts-->
+	<script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	<script src="js/materialize.js"></script>
+	<script src="js/init.js"></script>
+</head>
+<body>
+	<header class = "navbar-fixed">
+	<nav class="red accent-1" role="navigation">
+			<div class="nav-wrapper container"><a id="logo-container" href="/" class="brand-logo"><img src = "img/logo.png" alt="QBNB"></a>
+				<ul class="right">
+					{{#admin}}
+					<li><a href="admindash.php">Admin</a></li>
+					{{/admin}}
+					<li><a href="propertylist.php">Properties List</a></li>
+					{{^email}}
+					<li><a href="createaccount.php">Sign Up</a></li>
+					<li><a href="/">Login</a></li>
+					{{/email}}
+					{{#email}}
+					<li><a href="account.php">Hi, {{email}}</a></li>
+					{{/email}}
+				</ul>
+			</div>
+		</nav>
+	</header>
+	<main>

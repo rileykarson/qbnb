@@ -1,0 +1,82 @@
+<div class = "container">
+  <div class="row">
+    <h3> Admin Dashboard </h3>
+    <form class="col s12" method="post">
+        <div class="row"> <!-- begin row -->          
+
+          <div class="input-field col s6"> <!-- div input field -->
+          	<p>Enter the ID of the <strong>User</strong> you want to delete.</p>
+          	<p color="red"><strong>NOTE: THIS WILL ALSO DELETE THEIR ACCOMMODATIONS!!!</strong></p>
+            <input placeholder="ID" name="deleteUser" id="user" type="id">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+          </button>
+          </div> <!-- div input field -->
+
+          	<div class="input-field col s6"> <!-- div input field -->
+          		<p>Enter the ID of the <strong>Accommodation</strong> you want to delete.</p>
+            	<input placeholder="ID" name="deleteProp" id="prop" type="id">
+            	<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            	<i class="material-icons right">send</i>
+          	</button>
+        	</div>   <!-- end div input field -->
+          	
+        </div> <!--end row -->
+        <div class = "row"> <!-- begin row-->
+        	<div class="input-field col s6"> <!-- div input field-->
+          		<p>Enter a Property ID to see its average rating</p>
+            	<input placeholder="ID" name="avgProp" id="prop" type="id">
+            	<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            	<i class="material-icons right">send</i>
+          	</button>
+        	</div>   <!--end div input field -->
+          	
+
+          	<div class="input-field col s6"> <!--div input field-->
+          		<p>Enter an owner's ID to see their average rating</p>
+            	<input placeholder="ID" name="avgOwner" id="avgOwner" type="id">
+            	<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            	<i class="material-icons right">send</i>
+          	</button>
+        	</div>   <!--end div input field-->
+          	
+        </div> <!--end row-->
+
+        <div class="row"> <!-- begin row -->
+        	<div class="input-field col s6"> <!-- div input field -->
+          		<p>Enter a User ID to see their bookings</p>
+            	<input placeholder="ID" name="userBook" id="book" type="id">
+            	<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            	<i class="material-icons right">send</i>
+          	</button>
+        	</div>  <!-- div input field--> 
+
+        	<div class="input-field col s6"> <!-- div input field -->
+          		<p>Enter a Property ID to see its bookings</p>
+            	<input placeholder="ID" name="propBook" id="book" type="id">
+            	<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            	<i class="material-icons right">send</i>
+          	</button>
+        	</div>  <!-- end div input field --> 
+          </div> <!-- end row -->
+          <div class="row">	
+          <div class="input-field col s6"> <!-- div input field -->
+            <p>Enter the email of the user you want to make an Admin</p>
+            <input placeholder="Email" name="adminUpdate" id="email" type="id">
+            <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            <i class="material-icons right">send</i>
+          </button>
+          </div>   <!--end div input field-->
+			<div class="input-field col s6"> <!-- div input field -->
+          		<p>Enter an owner ID to view the bookings of their properties</p>
+            	<input placeholder="ID" name="ownerBook" id="book" type="id">
+            	<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+            	<i class="material-icons right">send</i>
+          	</button>
+        	</div>   <!-- end div input field -->
+          	
+
+        </div> <!-- end row -->
+      </form>
+  </div>
+</div>

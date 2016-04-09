@@ -1,0 +1,45 @@
+<div class = "container">
+	<div class="row">
+		<h3> Booking Details </h3>
+		<div class = "card blue-grey">
+			<div class = "card-content white-text">
+				<span class = "card-title">{{address}}</span>
+				<p>This property is booked from {{start_date}} to {{end_date}}, the booking is currently {{status}} by the landlord.</p>
+				{{#Comments}}
+				<h4>Comments</h4>
+				{{#.}}
+				<div>
+					<span>{{comment}}</span> <span> Rating: {{rating}} </span><br>
+					{{#reply}}<span>{{reply}}</span>{{/reply}}
+				</div>
+				{{/.}}
+				{{/Comments}}
+				<div class = "card-action">
+					{{#owner}}
+						<a href="reviewbooking.php?id={{id}}">Review Booking</a>
+						<a href="profile.php?id={{member_id}}">View Renter Profile</a>
+					{{/owner}}
+					{{#booker}}
+						<a href="cancelbooking.php?id={{id}}">Cancel Booking</a>
+						<a href="profile.php?id={{owner_id}}">View Landlord Profile</a>
+					{{/booker}}
+					<a href="property.php?id={{property_id}}">View Property</a>
+					{{#booker}}
+					{{^Comments}}
+					<a href="addcomment.php?id={{property_id}}"">Rate this Property</a>
+					{{/Comments}}
+					{{/booker}}
+					{{#owner}}
+					{{#Comments}}
+					{{#.}}
+					{{^reply}}
+					<a href="replycomment.php?id={{comment_id}}"">Reply</a>
+					{{/reply}}
+					{{/.}}
+					{{/Comments}}
+					{{/owner}}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

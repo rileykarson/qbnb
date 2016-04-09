@@ -1,0 +1,216 @@
+<div class = "container">
+	<script>
+		data = JSON.parse("{{JSON}}".replace(/&quot;/g,'"'));
+		data = data.Properties[0];
+		hide = {};
+		for (row in data) {
+			if (data[row].POI != undefined) {
+				data[row].POI = data[row].POI[0];
+			}
+			if (data[row].Features != undefined) {
+				data[row].Features = data[row].Features[0];
+			}
+			hide[data[row].id] = 0;
+		}
+
+		function filter(key, value, state) {
+			var count = 0;
+			for (row in data) {
+				if (data[row][key] != value) {
+					count += 1;
+					hide[data[row].id] += 1 * state;
+				}
+			}
+			hider();
+			return count;
+		}
+
+		function listfilter(key, value, state) {
+			var count = 0;
+			for (row in data) {
+				var flip = true;
+				for (r in data[row][key]) {
+					if (data[row][key][r] === value) {
+						flip = false;
+					}
+				}
+				if (flip){
+					count += 1;
+					hide[data[row].id] += 1 * state;
+				}
+			}
+			hider();
+			return count;
+		}
+
+		function hider(){
+			for (row in hide) {
+				if (hide[row] > 0) {
+					$('.data-card-' + row).hide();
+				} else {
+					$('.data-card-' + row).show();
+				}
+			}
+		}
+
+	</script>
+	<div class="row">
+			<form class = "col s4 card-panel grey lighten-5" >
+			<h3>Properties Filter</h3>
+			<div class = "row">
+				<div class="input-field col s12">
+					<select name = "ownerid" class  = "hi select-filter">
+						<option value="" disabled selected>Choose an Owner</option>
+						{{#MemberList}}
+						{{#.}}
+						<option value="{{id}}">{{Name}}</option>
+						{{/.}}
+						{{/MemberList}}
+					</select>
+					<label>Owner</label>
+				</div>
+				<div class="input-field col s12">
+					<select name = "type" class  = "select-filter">
+						<option value="" disabled selected>Choose a Property Type</option>
+						<option value="Mansion">Mansion</option>
+						<option value="Apartment">Apartment</option>
+						<option value="Detatched">Detached</option>
+					</select>
+					<label>Property Type</label>
+				</div>
+				<div class="input-field col s12">
+					<select name = "districtname" class  = "select-filter">
+						<option value="" disabled selected>Choose a City District</option>
+						<option value="Toronto">Toronto</option>
+						<option value="New York">New York</option>
+						<option value="London">London</option>
+					</select>
+					<label>District</label>
+				</div>
+				<div class="input-field col s12">
+					<select name = "price" class  = "select-filter">
+						<option value="" disabled selected>Choose a Price</option>
+						{{#PriceList}}
+						{{#.}}
+						<option value="{{price}}">${{price}}</option>
+						{{/.}}
+						{{/PriceList}}
+					</select>
+					<label>Price</label>
+				</div>
+				<div class="input-field col s12">
+					<select name = "Features" class  = "select-filterlist">
+						<option value="" disabled selected>Choose a Feature</option>
+						{{#FeatureList}}
+						{{#.}}
+						<option value="{{feature}}">{{feature}}</option>
+						{{/.}}
+						{{/FeatureList}}
+					</select>
+					<label>Feature</label>
+				</div>
+				<div class="col s12">
+              <button style="float:left" class="btn waves-effect waves-light" type="Submit" name="submit">Reset
+                <i class="material-icons right">stop</i>
+              </button>
+            </div>
+				</div>
+			</form>
+		<div class = "col s8">
+			<h3>Properties</h3>
+			{{#Properties}}
+			<ul class = "property-list">
+				{{#.}}
+				<li>
+					<div class = "card grey darken-3 data-card-{{id}}">
+						<div class = "card-content white-text">
+							<dl>
+								<dt>Owner:</dt>
+								<dd><a href="profile.php?id={{ownerid}}">{{ownername}}</a></dd>
+								<dt>Property Type:</dt>
+								<dd>{{type}}</dd>
+								<dt>Address:</dt>
+								<dd>{{address}}, {{districtname}}</dd>
+								<dt>Price:</dt>
+								<dd>${{price}}/night</dd>
+							</dl>
+							<ul>
+								{{#POI}}
+								<li>
+									<span> Points of Interest: </span>
+									<ul class = "chip-list">
+										{{#.}}
+										<li><div class = "chip">{{.}}</div></li>
+										{{/.}}
+									</ul>
+								</li>
+								{{/POI}}	
+								{{#Features}}
+								<li>
+									<span> Features: </span>
+									<ul class = "chip-list">
+										{{#.}}
+										<li><div class = "chip">{{.}}</div></li>
+										{{/.}}
+									</ul>
+								</li>
+								{{/Features}}
+							</ul>
+						</div>
+						<div class = "card-action">
+							<a href="property.php?id={{id}}">View Property</a>
+							<a href="profile.php?id={{ownerid}}">View Owner Profile</a>
+							<a href="createbooking.php?id={{id}}">Book</a>
+						</div>
+					</div>
+				</li>
+				{{/.}}
+			</ul>
+			{{/Properties}}
+			{{^Properties}}
+			<p>No Properties to Display.</p>
+			{{/Properties}}
+		</div>
+	</div>
+	<script>
+		$(document).ready(function() {
+			$('select').material_select();
+
+			$('select.select-filter').data('val', $(this).val());
+
+			$('select.select-filter').on("change", function(o){
+				var name = o.target.name;
+				var t = $(this);
+				var val = o.target.value;
+				var old = t.data('val');
+				t.data('val', t.val());
+				console.log(name);
+				console.log(old);
+				console.log(val);
+				if (old != "") {
+					filter(name, old, -1);
+				}
+				filter(name, val, 1);
+			});
+
+			$('select.select-filterlist').data('val', $(this).val());
+
+			$('select.select-filterlist').on("change", function(o){
+				var name = o.target.name;
+				var t = $(this);
+				var val = o.target.value;
+				var old = t.data('val');
+				t.data('val', t.val());
+				console.log(name);
+				console.log(old);
+				console.log(val);
+				if (old != "") {
+					listfilter(name, old, -1);
+				}
+				listfilter(name, val, 1);
+			});
+		});
+
+
+	</script>
+</div>

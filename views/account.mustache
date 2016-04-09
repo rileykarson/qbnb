@@ -1,0 +1,103 @@
+  <div class="container">
+    <div class="row">
+     <div class="col s12">
+      <h2>Account Details</h2>
+          <div class="col s6">
+            <h4>Profile</h4>
+            <dl>
+             <dt>Name: </dt>
+             <dd>{{Name}}</dd>
+             <dt>Email:</dt>
+             <dd>{{Email}}</dd>
+             <dt>Phone:</dt>
+             <dd>{{Phone Number}}</dd>
+             <dt>Faculty:</dt>
+             <dd>{{Faculty}}</dd>
+             <dt>Degree:</dt>
+             <dd>{{Degree}}</dd>
+           </dl>
+         </div>
+         <div class = "col s6 button-holder-div">
+          <a href="/mybookings.php" style="color:white"><button class="btn blue waves-effect waves-light">My Bookings<i class="material-icons right">settings</i></button></a>
+        </div>
+        <div class = "col s6 button-holder-div">
+          <a href="/addproperty.php" style="color:white"><button class="btn green waves-effect waves-light">Add Property<i class="material-icons right">home</i></button></a>
+        </div>
+        <div class = "col s6 button-holder-div">
+          <a href="/logout.php" style="color:white"><button class="btn red waves-effect waves-light">Logout<i class="material-icons right">settings</i></button></a>
+        </div>
+        <div class = "col s6 button-holder-div">
+          <a href="/removeuser.php" style="color:white"><button class="btn red waves-effect waves-light">Delete Account<i class="material-icons right">warning</i></button></a>
+        </div>
+      {{#Properties}}
+      <div class="col s6">
+        <h4>My Properties</h4>
+        <ul>
+          {{#.}}
+          <li>
+            <span>{{address}} <a href="/editproperty.php?id={{id}}">Edit<i class="material-icons">create</i></a></span>
+          </li>
+          {{/.}}
+        </ul>
+      </div>
+      {{/Properties}}
+      <div class = "col s12">
+        <div class="row">
+          <form method="post" class="input-field col s12">
+            <h4>Edit Account Details</h4>
+            <div class="input-field col s6">
+              <input placeholder="Name" name="name" id="name" type="text" class="validate">
+              <label for="name">Name</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input placeholder="Email" name="email" id="email" type="email" class="validate">
+              <label for="email">Email</label>
+            </div>
+
+            <div class="input-field col s6">
+              <input placeholder="Phone" name="phone" id="phone" type="text" class="validate">
+              <label for="phone">Phone</label>
+            </div>
+
+            <div class="input-field col s6">
+              <select name = "faculty">
+                <option value="" disabled selected>Choose your Faculty</option>
+                {{#Faculties}}
+                {{#.}}
+                <option value="{{id}}">{{name}}</option>
+                {{/.}}
+                {{/Faculties}}
+              </select>
+              <label>Faculty</label>
+            </div>
+
+            <div class="input-field col s6">
+              <select name = "degree_type">
+                <option value="" disabled selected>Choose your Degree Type</option>
+                {{#Degree_types}}
+                {{#.}}
+                <option value="{{id}}">{{name}}</option>
+                {{/.}}
+                {{/Degree_types}}
+              </select>
+              <label>Degree Type</label>
+            </div>
+            <div class="col s6">
+              <button style="float:right" class="btn green waves-effect waves-light" type="Submit" name="submit">Edit
+                <i class="material-icons right">create</i>
+              </button>
+            </div>
+          </form>
+          <script>
+            $(document).ready(function() {
+              $('select').material_select();
+            });
+            data = eval({{JSON}})
+          </script>
+        </div>
+      </div>
+    </div>
+</div>
+</div>
+</div>

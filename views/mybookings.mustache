@@ -1,0 +1,64 @@
+<div class = "container">
+	<div class="row">
+		<h3> Your Bookings </h3>
+		{{#Bookings}}
+		<table class = "striped highlight centered responsive">
+			<thead>
+				<tr>
+					<th data-field="address">Address</th>
+					<th data-field="start_date">Start Date</th>
+					<th data-field="end_date">End Date</th>
+					<th data-field="status">Status</th>
+					<th data-field="property">Property</th>
+					<th data-field="booking">Booking</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#.}}
+				<tr>
+					<td>{{address}}</td>
+					<td>{{start_date}}</td>
+					<td>{{end_date}}</td>
+					<td>{{status}}</td>
+					<td><a href="property.php?id={{property_id}}">View Property</a></td>
+					<td><a href="booking.php?id={{id}}">View Booking</a></td>
+				</tr>
+				{{/.}}
+			</tbody>
+		</table>
+		{{/Bookings}}
+		{{^Bookings}}
+		<p> You have no bookings :( </p>
+		{{/Bookings}}
+		<h3> Your Property Bookings </h3>
+		{{#Owned}}
+		<table class = "striped highlight centered responsive">
+			<thead>
+				<tr>
+					<th data-field="address">Address</th>
+					<th data-field="start_date">Start Date</th>
+					<th data-field="end_date">End Date</th>
+					<th data-field="status">Status</th>
+					<th data-field="property">Property</th>
+					<th data-field="booking">Booking</th>
+				</tr>
+			</thead>
+			<tbody>
+				{{#.}}
+				<tr>
+					<td>{{address}}</td>
+					<td>{{start_date}}</td>
+					<td>{{end_date}}</td>
+					<td>{{status}}</td>
+					<td><a href="property.php?id={{property_id}}">View Property</a></td>
+					<td><a href="booking.php?id={{id}}">View Booking</a></td>
+				</tr>
+				{{/.}}
+			</tbody>
+		</table>
+		{{/Owned}}
+		{{^Owned}}
+		<p> You have no bookings on your properties :( </p>
+		{{/Owned}}
+	</div>
+</div>

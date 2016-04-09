@@ -1,0 +1,63 @@
+<div class = "container">
+  <div class="row">
+    <h3> Create Your Account </h3>
+    <form class="col s12" method="post">
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Email" name="email" id="email" type="email" class="validate">
+          <label for="email">Email</label>
+        </div>
+        <div class="input-field col s6">
+          <input placeholder="Name" name="name" id="name" type="text" class="validate">
+          <label for="Name">Name</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s4">
+          <input placeholder="Graduation Year" name="year" id="year" type="number" min = "1950" max = "2020"class="validate">
+          <label for="Year">Grad Year</label>
+        </div>
+        <div class="input-field col s4">
+          <select name = "degree_type">
+            <option value="" disabled selected>Choose your Degree Type</option>
+            {{#degree_types}}
+            {{#.}}
+            <option value="{{id}}">{{name}}</option>
+            {{/.}}
+            {{/degree_types}}
+          </select>
+          <label>Degree Type</label>
+        </div>
+        <div class="input-field col s4">
+          <select name = "faculty">
+            <option value="" disabled selected>Choose your Faculty</option>
+            {{#faculty}}
+            {{#.}}
+            <option value="{{id}}">{{name}}</option>
+            {{/.}}
+            {{/faculty}}
+          </select>
+          <label>Faculty</label>
+        </div>
+      </div>
+      <div class="row">
+        <div class="input-field col s6">
+          <input placeholder="Password" name="password" id="password" type="password" class="validate">
+          <label for="Password">Password</label>
+        </div>
+        <div class="input-field col s6">
+          <input placeholder="Phone Number" name="phone_number" id="phone_number" type="tel" class="validate">
+          <label for="phone_number">Phone Number</label>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" name="action">Submit
+          <i class="material-icons right">send</i>
+        </button>
+      </div>
+    </form>
+    <script>
+      $(document).ready(function() {
+        $('select').material_select();
+      });
+    </script>
+  </div>
+</div>

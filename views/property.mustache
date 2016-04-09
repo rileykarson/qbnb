@@ -1,0 +1,55 @@
+<div class = "container">
+	<div class="row">
+		<h3>Property Details</h3>
+		<dl>
+			<dt>Owner:</dt>
+			<dd><a href="profile.php?id={{Owner}}">View Profile</a></dd>
+			<dt>Property Type:</dt>
+			<dd>{{Type}}</dd>
+			<dt>Address:</dt>
+			<dd>{{Address}}, {{DistrictName}}</dd>
+			<dt>Price:</dt>
+			<dd>${{Price}}/night</dd>
+		</dl>
+		<ul>
+			{{#Points Of Interest}}
+			<li>
+				<span> Points of Interest: </span>
+				<ul class = "chip-list">
+					{{#.}}
+					<li><div class = "chip">{{poi}}</div></li>
+					{{/.}}
+				</ul>
+			</li>
+			{{/Points Of Interest}}	
+			{{#Features}}
+			<li>
+				<span> Features: </span>
+				<ul class = "chip-list">
+					{{#.}}
+					<li><div class = "chip">{{features}}</div></li>
+					{{/.}}
+				</ul>
+			</li>
+			{{/Features}}
+			{{#Comments}}
+			<li>
+				<span> Comments: </span>
+				<ul class = "collection">
+					{{#.}}
+					<li class = "collection-item">{{comments}} Rating: {{rating}} {{#reply}} Reply: {{reply}}{{/reply}}</li>
+					{{/.}}
+				</ul>
+			</li>
+			{{/Comments}}
+		</ul>
+		{{#Bookings}}
+		<h3>Bookings</h3>
+		<ul class = "collection">
+			{{#.}}
+			<li class = "collection-item">{{start_date}} to {{end_date}}</li>
+			{{/.}}
+		</ul>
+		{{/Bookings}}
+	</div>
+</div>

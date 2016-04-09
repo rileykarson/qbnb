@@ -1,0 +1,24 @@
+<div class = "container">
+	<div class="row">
+		<h3>Review Booking </h3>
+		<div class = "card blue-grey">
+			<div class = "card-content white-text">
+				<span class = "card-title">{{address}}</span>
+				<p>This property is booked from {{start_date}} to {{end_date}}, the booking is currently {{status}} by the landlord.</p>
+				<form method = "post">
+					<p>
+						<input name="value" value="1"type="radio" id="test1" />
+						<label for="test1">Allow</label>
+					</p>
+					<p>
+						<input name="value" value="0" type="radio" id="test2" />
+						<label for="test2">Deny</label>
+					</p>
+					<button class="btn waves-effect waves-light" type="submit" name="action">Submit
+						<i class="material-icons right">send</i>
+					</button>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
